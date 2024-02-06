@@ -21,12 +21,14 @@ class ChatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Material(
-      child: Column(
-        children: [
-          CustomAppBar(title: 'Chats'),
-          ChatsList(),
-        ],
+    return const SafeArea(
+      child: Material(
+        child: Column(
+          children: [
+            CustomAppBar(title: 'Chats'),
+            ChatsList(),
+          ],
+        ),
       ),
     );
   }
@@ -98,17 +100,7 @@ class ChatTile extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color,
-            ),
-            child: const Center(
-              child: Icon(Icons.person, color: Colors.white),
-            ),
-          ),
+          child: Avatar(color: color),
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -127,6 +119,27 @@ class ChatTile extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class Avatar extends StatelessWidget {
+  final Color color;
+
+  const Avatar({super.key, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+      ),
+      child: const Center(
+        child: Icon(Icons.person, color: Colors.white),
+      ),
     );
   }
 }
