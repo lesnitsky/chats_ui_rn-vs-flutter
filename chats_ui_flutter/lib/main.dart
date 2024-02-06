@@ -26,7 +26,7 @@ class ChatsPage extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(title: 'Chats'),
-            ChatsList(),
+            Expanded(child: ChatsList()),
           ],
         ),
       ),
@@ -73,17 +73,15 @@ class ChatsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        itemCount: 1000,
-        itemBuilder: (context, index) {
-          return ChatTile(
-            color: colors[index % colors.length],
-            id: index,
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      itemCount: 1000,
+      itemBuilder: (context, index) {
+        return ChatTile(
+          color: colors[index % colors.length],
+          id: index,
+        );
+      },
     );
   }
 }
